@@ -295,25 +295,26 @@ namespace Coffee.UIEffects
         private void OnEnable()
         {
             _isPaused = true;
-
-#if UNITY_EDITOR
+        
+        #if UNITY_EDITOR
             if (!Application.isPlaying) return;
-#endif
-
+        #endif
+        
             switch (playOnEnable)
             {
                 case PlayOnEnable.KeepDirection:
                     Play();
                     break;
                 case PlayOnEnable.Forward:
+                    ResetTime();
                     PlayForward();
                     break;
                 case PlayOnEnable.Reverse:
+                    ResetTime();
                     PlayReverse();
                     break;
             }
         }
-
         private void OnDisable()
         {
             _isPaused = true;
